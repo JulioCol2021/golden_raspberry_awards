@@ -1,0 +1,109 @@
+@import "node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+/* Ajustes gerais */
+.container {
+  font-family: Arial, sans-serif;
+  margin: 0 auto;
+  max-width: 100%; /* Permite que a página ocupe toda a largura */
+}
+
+/* Ajusta o menu de navegação */
+nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+/* Estilização dos cards */
+.card {
+  border: 1px solid #3b3a3b;
+  padding: 15px;
+  margin-bottom: 20px;
+  min-height: 100%; /* Garante altura mínima */
+  flex-grow: 1; /* Faz com que os cards cresçam proporcionalmente */
+}
+
+/* Ajusta as tabelas */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* Mantém colunas com largura fixa */
+  word-wrap: break-word; /* Ajusta conteúdo grande */
+}
+
+.table th,
+.table td {
+  border: 1px solid #111a02;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Inputs e seleções de filtros */
+.filter-input {
+  width: 100%;
+  margin-top: 5px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.filter-select {
+  width: 100%;
+  margin-top: 5px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+/* Títulos da tabela */
+th {
+  text-align: left;
+  vertical-align: bottom;
+}
+
+th div {
+  margin-top: 5px;
+}
+
+/* Remove margens e preenchimentos no body e html */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Ajuste nos containers */
+.container-fluid {
+  padding: 0 10px; /* Reduz espaços laterais */
+}
+
+.row {
+  margin: 0; /* Remove margens extras */
+}
+
+/* Responsividade e ajustes automáticos */
+.card {
+  min-height: 300px; /* Altura mínima para os cards */
+  flex-grow: 1; /* Cards crescem proporcionalmente */
+}
+
+.table {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+.col-md-6 {
+  flex: 0 0 50%; /* Cada coluna ocupa 50% */
+  max-width: 50%; /* Garante que as colunas não excedam o espaço */
+}
+
+@media (max-width: 768px) {
+  .col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%; /* Em telas menores, cada coluna ocupa 100% */
+  }
+}

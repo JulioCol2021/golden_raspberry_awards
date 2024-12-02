@@ -1,0 +1,56 @@
+
+<div class="container mt-4">
+  <!-- Filtro de busca -->
+  <div class="row mb-3">
+    <!-- Campo para filtrar por ano -->
+    <div class="col-md-6">
+      <input type="text" class="form-control" placeholder="Filter by year" [(ngModel)]="searchYear" (ngModelChange)="filterMovies()">
+    </div>
+    <!-- Campo para filtrar por status de vencedor -->
+    <div class="col-md-6">
+      <select class="form-control" [(ngModel)]="filterWinner" (change)="filterMovies()">
+        <option value="">Select Winner</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Tabela de exibição dos filmes -->
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Year</th>
+        <th>Title</th>
+        <th>Winner</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let movie of filteredMovies">
+        <td>{{ movie.id }}</td>
+        <td>{{ movie.year }}</td>
+        <td>{{ movie.title }}</td>
+        <td>{{ movie.winner }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Paginação -->
+  <nav>
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="currentPage === 0">
+        <button class="page-link" (click)="currentPage = 0; loadMovies()">First</button>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === 0">
+        <button class="page-link" (click)="currentPage = currentPage - 1; loadMovies()">Previous</button>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
+        <button class="page-link" (click)="currentPage = currentPage + 1; loadMovies()">Next</button>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
+        <button class="page-link" (click)="currentPage = totalPages - 1; loadMovies()">Last</button>
+      </li>
+    </ul>
+  </nav>
+</div>

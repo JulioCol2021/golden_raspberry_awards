@@ -1,0 +1,32 @@
+
+.list {
+  padding: 20px;
+}
+
+h2 {
+  font-size: 18px;
+  color: #4d07f3;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid #545f02ea;
+  padding: 8px;
+  text-align: left;
+  font-size: 14px;
+}
+
+th {
+  background-color: #9bf4fa;
+  color: #4d07f3;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #ebf7de;
+}

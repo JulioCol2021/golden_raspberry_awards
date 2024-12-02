@@ -1,0 +1,89 @@
+<div class="list container-fluid mt-4">
+  <!-- Título da lista de filmes -->
+  <h2 class="mb-4 text-center">Lista de Filmes</h2>
+
+  <!-- Tabela de filmes com filtros -->
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>
+          Ano
+          <!-- Filtro por ano -->
+          <div class="filter-container mt-2">
+            <input
+              type="text"
+              placeholder="Filtrar por ano"
+              class="form-control filter-input"
+              [(ngModel)]="yearFilter"
+              (input)="filterMovies()"
+            />
+          </div>
+        </th>
+        <th>Título</th>
+        <th>
+          Vencedor?
+          <!-- Filtro por status de vencedor -->
+          <div class="filter-container mt-2">
+            <select
+              class="form-select filter-select"
+              [(ngModel)]="winnerFilter"
+              (change)="filterMovies()"
+            >
+              <option value="">Sim/Não</option>
+              <option value="Sim">Sim</option>
+              <option value="Não">Não</option>
+            </select>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Renderização das linhas da tabela para os filmes da página atual -->
+      <tr *ngFor="let movie of getMoviesForCurrentPage()">
+        <td>{{ movie.id }}</td>
+        <td>{{ movie.year }}</td>
+        <td>{{ movie.title }}</td>
+        <td>{{ movie.winner }}</td>
+      </tr>
+      <tr *ngIf="getMoviesForCurrentPage().length === 0">
+        <td colspan="4" class="text-center">Nenhum filme encontrado.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Controle de paginação -->
+  <div class="pagination d-flex justify-content-center mt-3">
+    <button
+      class="btn btn-outline-primary me-2"
+      (click)="goToFirstPage()"
+      [disabled]="currentPage === 1"
+    >
+      Primeira
+    </button>
+    <button
+      class="btn btn-outline-primary me-2"
+      (click)="goToPreviousPage()"
+      [disabled]="currentPage === 1"
+    >
+      Anterior
+    </button>
+    <span class="align-self-center">
+      Página {{ currentPage }} de {{ totalPages }}
+    </span>
+    <button
+      class="btn btn-outline-primary ms-2"
+      (click)="goToNextPage()"
+      [disabled]="currentPage === totalPages"
+    >
+      Próxima
+    </button>
+    <button
+      class="btn btn-outline-primary ms-2"
+      (click)="goToLastPage()"
+      [disabled]="currentPage === totalPages"
+    >
+      Última
+    </button>
+  </div>
+</div>
