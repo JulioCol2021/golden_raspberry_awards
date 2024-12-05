@@ -1,91 +1,49 @@
-
-import { Component, OnInit } from '@angular/core';
-import { MoviesService } from '../services/movies.service';
+import { Component } from '@angular/core';
 
 /**
- * Componente responsável por exibir e gerenciar a lista de filmes.
- * Implementa funcionalidades de filtragem por ano e status de vencedor,
- * além de paginação.
+ * Componente que exibe uma lista de filmes com opções de filtragem e paginação.
  */
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  styleUrls: ['./list.component.css'],
 })
-export class ListComponent implements OnInit {
-  /**
-   * Lista completa de filmes carregada do serviço.
-   */
-  movies: any[] = [];
+export class ListComponent {
+  currentPage: number = 0; // Página atual
+  totalPages: number = 10; // Total de páginas disponíveis (valor fictício para exemplo)
+  searchYear: string = ''; // Ano para filtro de busca
+  filterWinner: string = ''; // Status de vencedor para filtro
+  filteredMovies: any[] = []; // Lista filtrada de filmes
 
   /**
-   * Lista de filmes filtrada para exibição.
+   * Carrega os filmes para a página atual.
    */
-  filteredMovies: any[] = [];
+  loadMovies(): void {
+    console.log('Carregando filmes para a página:', this.currentPage);
+    // Simulação de carregamento de filmes
+  }
 
   /**
-   * Filtro de busca pelo ano do filme.
+   * Navega para a primeira página.
    */
-  searchYear: string = '';
-
-  /**
-   * Filtro pelo status de vencedor (Yes/No).
-   */
-  filterWinner: string = '';
-
-  /**
-   * Página atual na paginação.
-   */
-  currentPage: number = 0;
-
-  /**
-   * Número de itens exibidos por página.
-   */
-  itemsPerPage: number = 15;
-
-  /**
-   * Total de páginas disponíveis.
-   */
-  totalPages: number = 0;
-
-  /**
-   * Construtor do componente.
-   * @param moviesService Serviço responsável por obter os dados dos filmes.
-   */
-  constructor(private moviesService: MoviesService) {}
-
-  /**
-   * Método de inicialização do componente.
-   * Carrega a lista inicial de filmes.
-   */
-  ngOnInit(): void {
+  goToFirstPage(): void {
+    this.currentPage = 0;
     this.loadMovies();
   }
 
   /**
-   * Carrega a lista de filmes do serviço e atualiza as variáveis de controle.
+   * Navega para a última página.
    */
-  loadMovies(): void {
-    this.moviesService.getMovies(this.currentPage, this.itemsPerPage).subscribe(data => {
-      this.movies = data.content.map(movie => ({
-        id: movie.id,
-        year: movie.year,
-        title: movie.title,
-        winner: movie.winner,
-      }));
-      this.filteredMovies = [...this.movies];
-      this.totalPages = data.totalPages;
-    });
+  goToLastPage(): void {
+    this.currentPage = this.totalPages - 1;
+    this.loadMovies();
   }
 
   /**
-   * Filtra os filmes com base nos critérios definidos (ano e status de vencedor).
+   * Aplica o filtro de filmes com base nos critérios selecionados.
    */
   filterMovies(): void {
-    this.filteredMovies = this.movies.filter(movie => {
-      const matchesYear = this.searchYear ? movie.year.toString().includes(this.searchYear) : true;
-      const matchesWinner = this.filterWinner ? movie.winner === this.filterWinner : true;
-      return matchesYear && matchesWinner;
-    });
+    console.log('Filtrando filmes com critérios: ', this.searchYear, this.filterWinner);
+    // Lógica de filtragem simulada
   }
 }

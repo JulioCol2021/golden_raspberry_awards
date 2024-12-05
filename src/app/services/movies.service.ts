@@ -4,10 +4,10 @@ import { Observable } from 'rxjs';
 
 /**
  * Serviço responsável por realizar chamadas para a API de filmes.
- * Este serviço contém métodos específicos para acessar diferentes endpoints da API.
+ * Este serviço contém métodos para acessar diferentes endpoints da API.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MoviesService {
   /**
