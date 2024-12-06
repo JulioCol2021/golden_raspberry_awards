@@ -1,0 +1,142 @@
+<div class="container-fluid mt-4 w-100">
+  <div class="row g-3">
+    <!-- Coluna: Lista de anos com múltiplos vencedores -->
+    <div class="col-lg-6 col-md-12">
+      <div class="card mb-4 h-100">
+        <div class="card-header">Lista de anos com múltiplos vencedores</div>
+        <div class="card-body">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Ano</th>
+                <th>Quantidade de Vencedores</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let year of yearsWithMultipleWinners">
+                <td>{{ year.year }}</td>
+                <td>{{ year.winnerCount }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coluna: Top 3 estúdios com vencedores -->
+    <div class="col-lg-6 col-md-12">
+      <div class="card mb-4 h-100">
+        <div class="card-header">Top 3 estúdios com vencedores</div>
+        <div class="card-body">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Quantidade de Vitórias</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let studio of topStudios">
+                <td>{{ studio.name }}</td>
+                <td>{{ studio.winCount }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3">
+    <!-- Coluna: Produtores com maior e menor intervalo -->
+    <div class="col-lg-6 col-md-12">
+      <div class="card mb-4 h-100">
+        <div class="card-header">Produtores com maior e menor intervalo entre vitórias</div>
+        <div class="card-body">
+          <h5>Maior Intervalo</h5>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Produtor</th>
+                <th>Intervalo</th>
+                <th>Ano Anterior</th>
+                <th>Ano Seguinte</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let producer of maxIntervalProducers">
+                <td>{{ producer.producer }}</td>
+                <td>{{ producer.interval }}</td>
+                <td>{{ producer.previousWin }}</td>
+                <td>{{ producer.followingWin }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <h5>Menor Intervalo</h5>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Produtor</th>
+                <th>Intervalo</th>
+                <th>Ano Anterior</th>
+                <th>Ano Seguinte</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let producer of minIntervalProducers">
+                <td>{{ producer.producer }}</td>
+                <td>{{ producer.interval }}</td>
+                <td>{{ producer.previousWin }}</td>
+                <td>{{ producer.followingWin }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coluna: Lista de filmes vencedores por ano -->
+    <div class="col-lg-6 col-md-12">
+      <div class="card mb-4 h-100">
+        <div class="card-header">Lista de filmes vencedores por ano</div>
+        <div class="card-body">
+          <div class="input-group mb-3">
+            <input
+              type="number"
+              placeholder="Pesquisar por ano"
+              class="form-control"
+              [(ngModel)]="searchYear"
+              (input)="filterMovies()"
+            />
+            <button class="btn btn-primary" (click)="filterMovies()">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Ano</th>
+                <th>Título</th>
+                <th>Estúdio</th>
+                <th>Produtores</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let movie of filteredMovies">
+                <td>{{ movie.id }}</td>
+                <td>{{ movie.year }}</td>
+                <td>{{ movie.title }}</td>
+                <td>{{ movie.studio }}</td>
+                <td>{{ movie.producers }}</td>
+              </tr>
+              <tr *ngIf="filteredMovies.length === 0">
+                <td colspan="5">Nenhum filme encontrado para o ano selecionado.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+# Ignorar node_modules
+node_modules/
+
+# Ignorar pasta de testes
+Evidencia de teste/
+e2e/
+
+# Ignorar outros arquivos de cache ou temporários
+*.log
+*.tmp
